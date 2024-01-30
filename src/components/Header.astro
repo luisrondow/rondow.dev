@@ -2,21 +2,37 @@
 import { Icon } from "astro-icon/components";
 
 import ThemeSwitcher from "./ThemeSwitcher";
+
+const ROUTES = [
+  { name: "work", path: "/work" },
+  { name: "projects", path: "/projects" },
+  { name: "articles", path: "/articles" },
+];
+
+const route = ROUTES.find(({ path }) => path === Astro.url.pathname)?.name;
 ---
 
 <header>
   <div class="flex items-center justify-between px-12 py-6">
     <h2 class="text-2xl uppercase">
-      <a href="#">Luis von Rondow</a>
+      <a href="/">Luis von Rondow</a>
     </h2>
     <div class="flex items-center gap-16">
       <div class="flex gap-10">
-        <a class="transition-colors hover:text-primary" href="#work">Work</a>
-        <a class="transition-colors hover:text-primary" href="#projects"
-          >Projects</a
-        >
-        <a class="transition-colors hover:text-primary" href="#blog">Articles</a
-        >
+        {
+          ROUTES.map(({ name, path }) => (
+            <a
+              class={`capitalize transition-colors hover:text-primary dark:hover:text-pale ${
+                route === name
+                  ? "font-medium text-primary underline dark:text-pale"
+                  : ""
+              }`}
+              href={path}
+            >
+              {name}
+            </a>
+          ))
+        }
       </div>
       <ThemeSwitcher client:load>
         <Icon

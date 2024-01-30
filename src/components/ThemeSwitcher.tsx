@@ -41,6 +41,7 @@ const ThemeSwitcher = (props: any) => {
       className={`flex justify-between gap-1 p-1 ${COLORS[theme].containerBg}`}
     >
       <button
+        aria-label="Toggle theme to light mode"
         type="button"
         className={`flex h-8 w-8 items-center justify-center p-2 ${theme === "light" ? COLORS[theme].buttonBg : ""}`}
         onClick={() => setTheme("light")}
@@ -48,6 +49,7 @@ const ThemeSwitcher = (props: any) => {
         {props.lightIcon}
       </button>
       <button
+        aria-label="Toggle theme to dark mode"
         type="button"
         className={`flex h-8 w-8 items-center justify-center p-2 ${theme === "dark" ? COLORS[theme].buttonBg : ""}`}
         onClick={() => setTheme("dark")}
