@@ -2,8 +2,30 @@
 import Layout from "../layouts/Layout.astro";
 ---
 
-<Layout title="Welcome to Astro.">
-  <main>
-    <h1 class="text-red-500">Rondow</h1>
+<Layout title="Luis von Rondow">
+  <main class="flex h-full w-full flex-col items-center px-12">
+    <section
+      class="flex h-[calc(100vh-10.5rem)] w-full max-w-[1440px] flex-col items-center justify-center"
+    >
+      <img
+        src="https://avatars.githubusercontent.com/u/29529438?s=400&u=da47bf24048af482ecd887d96a4683f4e39e2c4b&v=4"
+        alt="Luis von Rondow avatar"
+        class="mb-8 h-[180px] w-[180px] rounded-full"
+      />
+      <span class="text-3xl">Hi! I'm</span>
+      <h1 class="text-[8rem] text-primary">Luis von Rondow</h1>
+      <span class="mt-8 text-2xl">Software Engineer, focused on Frontend.</span>
+      <span class="text-2xl"
+        >OSS contribuitor and Frontend.OPO community organizer.</span
+      >
+      <span class="mb-16 text-2xl"
+        >Reach me out at <a
+          href="mailto:me@rondow.dev"
+          target="_blank"
+          class="transition-all hover:text-primary hover:underline dark:hover:text-pale"
+          >me@rondow.dev</a
+        >
+      </span>
+    </section>
   </main>
 </Layout>

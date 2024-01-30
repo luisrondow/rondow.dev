@@ -1,0 +1,46 @@
+---
+import { Icon } from "astro-icon/components";
+
+const SOCIAL_LINKS = [
+  {
+    name: "Github",
+    url: "https://github.com/luisrondow",
+  },
+  {
+    name: "LinkedIn",
+    url: "https://www.linkedin.com/in/luisrondow/",
+  },
+  {
+    name: "Resume",
+    url: "",
+  },
+];
+---
+
+<footer class="flex flex-col items-center justify-start px-12 pb-2">
+  <div class="flex w-full justify-center gap-4">
+    {
+      SOCIAL_LINKS.map(({ name, url }) => (
+        <div class="group">
+          <a
+            class="font-bold text-black transition-all group-hover:text-primary dark:text-white dark:group-hover:text-pale"
+            href={url}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            {name}
+          </a>
+          <div class="h-[2px] w-full rounded-full bg-black group-hover:bg-primary dark:bg-white dark:group-hover:bg-pale" />
+        </div>
+      ))
+    }
+  </div>
+  <div class="mt-4 flex w-full font-medium text-primary dark:text-white">
+    Made with
+    <Icon
+      name="ri:javascript-fill"
+      class="mx-[1px] inline-block h-5 w-5 dark:text-pale"
+    />
+    by Luis von Rondow
+  </div>
+</footer>
