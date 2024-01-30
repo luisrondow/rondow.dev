@@ -3,13 +3,17 @@ import { Icon } from "astro-icon/components";
 
 import ThemeSwitcher from "./ThemeSwitcher";
 
+interface Props {
+  route?: "work" | "projects" | "articles";
+}
+
 const ROUTES = [
   { name: "work", path: "/work" },
   { name: "projects", path: "/projects" },
   { name: "articles", path: "/articles" },
 ];
 
-const route = ROUTES.find(({ path }) => path === Astro.url.pathname)?.name;
+const { route } = Astro.props;
 ---
 
 <header>
