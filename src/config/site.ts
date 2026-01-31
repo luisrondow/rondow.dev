@@ -5,11 +5,11 @@ export const siteConfig: SiteConfig = {
   url: "https://rondow.dev",
   author: "Luis von Rondow",
   description:
-    "Software engineer building modern web applications. Portfolio showcasing projects, talks, and technical writing.",
+    "Software engineer and community builder.",
   locale: "en_US",
   twitter: {
-    site: "@luisrondow",
-    creator: "@luisrondow",
+    site: "@rond0w",
+    creator: "@rond0w",
   },
 };
 
@@ -17,7 +17,7 @@ export const pageSEO: Record<string, SEOProps> = {
   home: {
     title: "Luis von Rondow",
     description:
-      "Software engineer building modern web applications. Portfolio showcasing projects, work experience, and open source contributions.",
+      "Software engineer and community builder.",
     openGraph: {
       type: "profile",
     },
