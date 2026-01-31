@@ -28,7 +28,7 @@ const { routeName, ...seoProps } = Astro.props;
       media="(prefers-color-scheme: dark)"
     />
     <script is:inline>
-      const theme = localStorage.getItem("theme") || "light";
+      const theme = localStorage.getItem("theme") || "dark";
       document.documentElement.classList.toggle("dark", theme === "dark");
     </script>
     <link rel="icon" type="image/x-icon" href="/favicon.ico" />
