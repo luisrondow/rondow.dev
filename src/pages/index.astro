@@ -1,31 +1,134 @@
 ---
 import Layout from "../layouts/Layout.astro";
+import SectionHeader from "../components/SectionHeader.astro";
+import WorkItem from "../components/WorkItem.astro";
+import ProjectItem from "../components/ProjectItem.astro";
+import homeData from "../data/home.json";
+import { pageSEO } from "../config/site";
+
+const { profile, work, projects, allProjectsLink } = homeData;
+const { bio, bioLink, bioSuffix } = profile;
 ---
 
-<Layout title="Luis von Rondow">
-  <main class="flex h-full w-full flex-col items-center px-12">
+<Layout {...pageSEO.home} routeName="home">
+  <main class="px-4 pb-10 pt-6 sm:pb-12 sm:pt-8 md:px-6">
+    <!-- Profile Intro Section -->
+    <section class="flex w-full flex-col items-center gap-6">
+      <pre
+        class="text-[4px] leading-[4px] text-muted">{`
+--------------:::::::::::::::::::::::::.........................................................
+---------------::::::::::::::::::::::::.... ..................................................
+----------------:::::::::::::::::::........   .............. ...........................  .
+----------------:::::::::::::::::. ....                  ...  .....................
+::::--------::::::::::::::::::::::..                            .................
+..................::::::::::::::                                  .  ..   .
+:::::::::.......:::.....     ...
+++++=====----=--::::::..... .. ..
+@@@@@@@@@@@@%%##**++====--::.
+****#####%%@@@@@@@@@@@@@@+-:..
+@@@@@@@@%###*****++++++==--.. .
+*##%%@@@@@@@@@@@@@@@@@#-::....
+:::-------------======-::...                 %.@@@@@.%%+*=+*. *
+:::::::::::::::::::::.........              ##=@@@@@:@@@@@@@@:@@==
+:.:.::...::...................             =@-@%@@@@+@@@@@@@@-@*@=
+..............................             %@-@@@@@@%@@@@@@@@-@@#%
+............................ .            %@@:-:::-=-#@@@@@*:...+@
+                                         @@@@#%@@+**=@@@@@%++#@@@@
+                                    :=@  @@@@:%-::@*@@@@@@@#..%-@+
+                                    @+=. %@@@@@@@@@@@@@@@%@@@@@@@
+                                    #+=@ %@@@@@@@@@@@@@@@@@@@@@@+
+                                    %=+@.*@@@@@@@@@@@@@@@@@@@@@@
+                                     *@@%#@@@@@@@@@@@@@@@@@@@@@.
+                                       .%@@@@@@@@@@@@@%*+@@@@@+
+                                        -@@@@@@@@@@@@@@@@@@@@@
+                                        +=@@@@@@@@@@@@@@@@@@@.
+                                       :-+=@@@@@@@#+++++*@@@-
+                                       ++++++@@@@@@@@@@@@@@*
+                                     ..++++**+#@@@@@%%@@@@*.
+                                   .@@+@*******+%@@@@%*##*:.
+                                  -@@@%@%**+++**+=*@@@@@@@@@@=
+                                .*@@@*@@@#**++*+%@@@@@@@@@@@@@@
+                               .@@@@@@@@@@#+=+=+%@@@@@@@@@@@@@@.
+                            .:@*@@@@@@@@#%%%*#%##@@@@@@@@@@@@@@.
+                         .#@@@@@@@@@@%*%%*%%%%%=#%@@@@@@@@@@@@@.
+                   .-%@@@@@@@@%@@@@@@=%%%%%##%*+#%@@@@@@@@@@@@@@+
+           ..-#@@@@@@@@@@@@@@@%@@@@@#%%%%+=#**++#%@@@@@@@@@@@@@@@@@%.
+..........%@@@@@@@@@@@@@@@@@@@@@@@@%%%%%%%#*==+=*%@@@@@@@@@@@@@@@@@@@@@@=..
+.......:+@@@@@@@@@@@@@@@@@@@@*@@@@%%%%%%%%%%%%%#*%%@@@@@@@@@@@@#@@@@@@@@@@@@@=..
+.....::#@@@@@@@@@@@@@@@@@@@@@@@@%%%%%%%%%%%++++=+#%@@@@@@@@@@@%@#@@@@@@@@@@@@@@@-.
+::::::#@@@@@@@@@@@@@@@@@@@@@@@@%%%%%%%%%%%%%%%%#:#%#+=====++#@+@@%@@@@@@@@@@@@@@@%.
+:::::=@@@@@@@@@@@@@@@@@@@@@@+@##%%%%########+=+#=*=-==++=====*@@@@*@@@@@@@@@@@@@@@#.
+::::-%@@@@@@@@@@@@@@@@@@@@@@=%*################=*#######****@@@@@@@*@@@@@@@@@@@@@@@-.
+::::-@@@@@@@@@@@@@@@@@@@@@@%+=#############*-***********+***@@@@@@@@+@@@@@@@@@@@@@@@..
+:::::%%%%%%%%@%%%%%%%@@@%%*%=-##########*==******************@@@@@@@@+@@@@@@@@@@@@@@+.
+::::-%%%%%%%%%%%%%%%%%%%*%%%%-+**###**=-=*******************=%%%%%%%*+%%%%%%%%%%%%%%%..
+::---%%%%%%%%%%%%%%%%%#%+=%%%%-======:++=*******************+%%%+++#%%%%%%%%%%%%%%%%%.
+:----*#%%##%%%%%%%%%%%%*=#%%%%%+===--=====+*++++++++++++++**+#*-#%%%%%%%%%%%%+#%%%%%#..
+------#################=-########---:====++++++++++++++++++++#######++#######*#######..
+------#################+*#########*=:=====:++++++++++++++++++#########*#####*########..
+-------*###############=############*-====*++++++++++++++++++#########+#####=########...
+-------****************+****************:---===============++*********+**************-..
+------:***************+********************==================*********+****-**********..
+::::::.***************=*******************===================********+*****+*****=*****..
+-----::=+++++++++++++=+++++++++++++++++++-===================++++++++-++++=+++++=:++++++.
+%%%%%%%#=++++++++++++=++++++++++++++++++:===-----------==-==-++++++++-+-++=+++++-:++++++.
+%%%%%%%%%+++++++++++:++++++++++++++++++=:--------------------++++++++-+-+=+++++--=++++++:.
+`}</pre>
+      <div class="flex flex-col gap-2.5">
+        <h1 class="text-3xl italic sm:text-4xl md:text-[44px]">{profile.name}</h1>
+        <div class="flex flex-col gap-1.5">
+          <span class="text-sm text-muted">{profile.location}</span>
+          <span class="text-sm text-muted">{profile.role}</span>
+        </div>
+        <p class="text-sm text-text sm:text-[15px]">
+          {bio}<a class="text-link underline hover:opacity-80" href={bioLink.href}>{bioLink.text}</a>{bioSuffix}
+        </p>
+      </div>
+    </section>
+
+    <!-- Content Grid -->
     <section
-      class="flex h-[calc(100vh-10.5rem)] w-full flex-col items-center justify-center"
+      class="mt-8 grid grid-cols-1 gap-12 sm:mt-11 sm:gap-16 md:grid-cols-2 md:gap-20 lg:gap-[100px]"
     >
-      <img
-        src="https://avatars.githubusercontent.com/u/29529438?s=400&u=da47bf24048af482ecd887d96a4683f4e39e2c4b&v=4"
-        alt="Luis von Rondow avatar"
-        class="mb-8 h-[180px] w-[180px] rounded-full"
-      />
-      <span class="text-3xl">Hi! I'm</span>
-      <h1 class="text-[8rem] text-primary">Luis von Rondow</h1>
-      <span class="mt-8 text-2xl">Software Engineer, focused on Frontend.</span>
-      <span class="text-2xl"
-        >OSS contribuitor and Frontend.OPO community organizer.</span
-      >
-      <span class="mb-16 text-2xl"
-        >Reach me out at <a
-          href="mailto:me@rondow.dev"
-          target="_blank"
-          class="transition-all hover:text-primary hover:underline dark:hover:text-pale"
-          >me@rondow.dev</a
+      <!-- Work Column -->
+      <div class="flex flex-col gap-5 sm:gap-[22px]">
+        <SectionHeader text="work" />
+
+        <div class="flex flex-col gap-5 sm:gap-[22px]">
+          {
+            work.map((item) => (
+              <WorkItem
+                name={item.name}
+                href={item.href}
+                role={item.role}
+                dates={item.dates}
+                description={item.description}
+              />
+            ))
+          }
+        </div>
+      </div>
+
+      <!-- Projects Column -->
+      <div class="flex flex-col gap-5 sm:gap-[22px]">
+        <SectionHeader text="projects" />
+
+        <div class="flex flex-col gap-5">
+          {
+            projects.map((item) => (
+              <ProjectItem
+                name={item.name}
+                href={item.href}
+                description={item.description}
+              />
+            ))
+          }
+        </div>
+
+        <a class="text-link underline hover:opacity-80" href={allProjectsLink}
+          >all projects &rarr;</a
         >
-      </span>
+      </div>
     </section>
   </main>
 </Layout>

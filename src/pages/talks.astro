@@ -1,0 +1,102 @@
+---
+import Layout from "../layouts/Layout.astro";
+import SectionHeader from "../components/SectionHeader.astro";
+import talksData from "../data/talks.json";
+import { pageSEO } from "../config/site";
+
+interface Talk {
+  title: string;
+  event: string;
+  date: string;
+  description?: string;
+  slides?: string;
+  video?: string;
+}
+
+const talks = talksData.talks as Talk[];
+const hasTalks = talks.some((t) => t.title);
+---
+
+<Layout {...pageSEO.talks} routeName="talks">
+  <main class="px-4 pb-10 pt-8 sm:pb-14 sm:pt-12 md:px-6">
+    <SectionHeader text="talks" />
+
+    {
+      hasTalks ? (
+        <div class="mt-6 flex flex-col gap-6 sm:mt-8 sm:gap-8">
+          {talks
+            .filter((t) => t.title)
+            .map((talk) => (
+              <article class="relative flex flex-col gap-2">
+                <span class="group">
+                  <a
+                    class="cursor-pointer text-base text-text sm:text-lg md:group-hover:underline"
+                    href={talk.video || talk.slides}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    {talk.title}
+                  </a>
+                  {talk.description && (
+                    <>
+                      {/* Mobile: collapsible description */}
+                      <details class="description-toggle mt-1 md:hidden">
+                        <summary class="cursor-pointer list-none text-xs text-muted-dark hover:text-muted">
+                          <span class="show-text">[+] show description</span>
+                          <span class="hide-text hidden">[-] hide description</span>
+                        </summary>
+                        <p class="mt-1.5 text-sm text-muted">
+                          {talk.description}
+                        </p>
+                      </details>
+                      {/* Desktop: tooltip on hover */}
+                      <div class="pointer-events-none absolute left-0 top-6 z-10 mt-2 hidden w-[500px] max-w-[90vw] opacity-0 transition-opacity group-hover:opacity-100 md:block">
+                        <div class="rounded border border-border bg-header-bg p-3 text-sm text-text shadow-lg">
+                          {talk.description}
+                        </div>
+                      </div>
+                    </>
+                  )}
+                </span>
+                <span class="text-sm text-muted">
+                  {talk.event} - {talk.date}
+                </span>
+                <div class="flex gap-4">
+                  {talk.slides && (
+                    <a
+                      class="text-sm text-link underline hover:opacity-80"
+                      href={talk.slides}
+                    >
+                      slides
+                    </a>
+                  )}
+                  {talk.video && (
+                    <a
+                      class="text-sm text-link underline hover:opacity-80"
+                      href={talk.video}
+                    >
+                      video
+                    </a>
+                  )}
+                </div>
+              </article>
+            ))}
+        </div>
+      ) : (
+        <p class="mt-4 text-text sm:mt-6">coming soon...</p>
+      )
+    }
+  </main>
+</Layout>
+
+<style>
+  .description-toggle[open] .show-text {
+    display: none;
+  }
+  .description-toggle[open] .hide-text {
+    display: inline;
+  }
+  .description-toggle summary::-webkit-details-marker {
+    display: none;
+  }
+</style>

@@ -1,0 +1,72 @@
+{
+  "profile": {
+    "name": "~/Luis_von_Rondow",
+    "location": "Porto, PT",
+    "role": "senior swe @ liminal",
+    "bio": "engineer & community builder [",
+    "bioLink": {
+      "text": "frontend.OPO",
+      "href": "https://www.meetup.com/frontend-opo/"
+    },
+    "bioSuffix": "]"
+  },
+  "work": [
+    {
+      "name": "Liminal",
+      "href": "https://liminal.co",
+      "role": "senior software engineer",
+      "dates": "(sep '24 - present)",
+      "description": "leading frontend delivery for an intelligence platform. built the design system from scratch, migrated webpack to vite, introduced typescript and raised test coverage."
+    },
+    {
+      "name": "Sword Health",
+      "href": "https://swordhealth.com",
+      "role": "frontend engineer",
+      "dates": "(may '23 - aug '24)",
+      "description": "led development of patient onboarding platform. sole frontend owner for the therapists' platform. built the chat app with vue 3 and typescript."
+    },
+    {
+      "name": "Mindera",
+      "href": "https://mindera.com",
+      "role": "frontend engineer",
+      "dates": "(jan '22 - may '23)",
+      "description": "built and maintained core e-commerce features for harrods and sacai. implemented ssr with razzle and rolled out ga4 and a/b testing."
+    },
+    {
+      "name": "Gama Academy",
+      "href": "https://gama.academy",
+      "role": "software engineer",
+      "dates": "(jun '21 - jan '22)",
+      "description": "built a leading technology course platform in brazil using react, next.js and react native. engineered backend with nodejs and nestjs."
+    },
+    {
+      "name": "T10",
+      "href": "https://t10.digital",
+      "role": "frontend engineer",
+      "dates": "(sep '20 - jun '21)",
+      "description": "led frontend development for flix, brazil's first digital home insurance company. implemented the mobile application using react native."
+    },
+    {
+      "name": "Take Blip",
+      "href": "https://www.blip.ai/",
+      "role": "frontend engineer",
+      "dates": "(nov '19 - sep '20)",
+      "description": "frontend development of latin america's largest chatbot provider impacting over 1,900 companies. contributed to the agnostic design system using stenciljs."
+    },
+    {
+      "name": "Mercatorio",
+      "href": "https://mercatorio.com.br/",
+      "role": "software engineer intern",
+      "dates": "(nov '18 - nov '19)",
+      "description": "legal technology company application development with angular, ruby on rails, postgresql and aws."
+    }
+  ],
+  "projects": [
+    {
+      "name": "fswp",
+      "href": "https://github.com/luisrondow/fswp",
+      "description": "a fast, keyboard-centric terminal application for decluttering directories using a swipe-style interface."
+    }
+  ],
+  "allProjectsLink": "/projects"
+}

@@ -1,57 +1,55 @@
 ---
-import { Icon } from "astro-icon/components";
-
-import ThemeSwitcher from "./ThemeSwitcher";
-
 interface Props {
-  route?: "work" | "projects" | "articles";
+  route?: "home" | "blog" | "bookmarks" | "projects" | "talks";
 }
 
 const ROUTES = [
-  { name: "work", path: "/work" },
+  { name: "home", path: "/" },
+  { name: "blog", path: "/blog" },
+  { name: "bookmarks", path: "/bookmarks" },
   { name: "projects", path: "/projects" },
-  { name: "articles", path: "/articles" },
+  { name: "talks", path: "/talks" },
 ];
 
 const { route } = Astro.props;
 ---
 
-<header>
-  <div class="flex items-center justify-between px-12 py-6">
-    <h2 class="text-2xl uppercase">
-      <a href="/">Luis von Rondow</a>
-    </h2>
-    <div class="flex items-center gap-16">
-      <div class="flex gap-10">
-        {
-          ROUTES.map(({ name, path }) => (
-            <a
-              class={`capitalize transition-colors hover:text-primary dark:hover:text-pale ${
-                route === name
-                  ? "font-medium text-primary underline dark:text-pale"
-                  : ""
-              }`}
-              href={path}
-            >
-              {name}
-            </a>
-          ))
-        }
-      </div>
-      <ThemeSwitcher client:load>
-        <Icon
-          slot="light-icon"
-          name="ri:sun-line"
-          size={24}
-          class="text-black"
-        />
-        <Icon
-          slot="dark-icon"
-          name="ri:moon-line"
-          size={24}
-          class="text-pale"
-        />
-      </ThemeSwitcher>
+<header class="bg-header-bg">
+  <nav
+    class="flex h-10 items-center justify-between px-3 sm:h-11 sm:px-4 md:px-6"
+    aria-label="Main navigation"
+  >
+    <div class="flex items-center gap-2 sm:gap-3 md:gap-4">
+      {
+        ROUTES.map(({ name, path }) => (
+          <a
+            class={`text-xs lowercase underline hover:opacity-80 sm:text-sm ${
+              route === name ? "font-medium" : ""
+            }`}
+            href={path}
+            aria-current={route === name ? "page" : undefined}
+          >
+            {name}
+          </a>
+        ))
+      }
     </div>
-  </div>
+    <button
+      id="theme-toggle"
+      type="button"
+      class="flex h-8 w-8 items-center justify-center rounded bg-control-bg text-sm text-text hover:opacity-80 sm:h-6 sm:w-6"
+      aria-label="Toggle dark mode"
+    >
+      <span id="theme-icon-light" class="hidden dark:block">&#9788;</span>
+      <span id="theme-icon-dark" class="block dark:hidden">&#9790;</span>
+    </button>
+  </nav>
 </header>
+
+<script>
+  const toggle = document.getElementById("theme-toggle");
+  toggle?.addEventListener("click", () => {
+    const isDark = document.documentElement.classList.toggle("dark");
+    localStorage.setItem("theme", isDark ? "dark" : "light");
+  });
+</script>

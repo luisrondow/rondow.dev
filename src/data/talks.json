@@ -1,0 +1,34 @@
+{
+  "talks": [
+    {
+      "title": "React Realism: Is there another alternative?",
+      "event": "Porto Tech Hub 2025",
+      "date": "nov '25",
+      "description": "React's reign over the frontend landscape is undeniable, but is it the only path to a great user experience? This talk cuts through the hype to offer a pragmatic look at the current state of frontend frameworks. We'll explore the real reasons behind React's dominance, then venture beyond to evaluate powerful alternatives like Svelte and Vue, comparing their developer experience and performance. Finally, we'll tackle the biggest shift in modern development: AI. Does it reinforce React's position, or does it level the playing field for its competitors? You'll leave with a clearer perspective on which tool is right for your next project in the age of AI.",
+      "slides": "https://speakerdeck.com/luisrondow/react-realism-is-there-another-alternative",
+      "video": "https://www.youtube.com/watch?v=NOGL_vmwGp4"
+    },
+    {
+      "title": "Storybook 2077 - Shipping a Design System in the Days of AI",
+      "event": "dxTechTalk - Frontend Day",
+      "date": "oct '25",
+      "description": "Modern design systems are evolving into AI-augmented supply chains—where tokens, building blocks, and automation shape how developers and designers work. This session explores how headless libraries like shadcn, utility-first styling with Tailwind, and an AI-native toolchain (AI IDEs and MCPs) come together to turn Storybook into a spec you can actually ship. You’ll leave with a practical roadmap for building a modern, adaptable design system—quickly and safely.",
+      "slides": "https://speakerdeck.com/luisrondow/storybook-2077-shipping-a-design-system-in-the-days-of-ai",
+      "video": "https://www.youtube.com/live/8KuhooKD7T0?si=ju8V900eLbpjOebn&t=1992"
+    },
+    {
+      "title": "The State of Routing in React",
+      "event": "frontend.OPO #7",
+      "date": "jul '25",
+      "description": "Routing in React has come a long way, from basic libraries to today’s framework-driven approaches. But what’s driving this evolution now, and what does it mean for your projects? In this talk, we’ll explore how routing in React has changed over the years, compare the latest strategies and frameworks, and look at what’s shaping routing today.",
+      "slides": "https://speakerdeck.com/luisrondow/the-state-of-routing-in-react"
+    },
+    {
+      "title": "How to boost your programming skills in HTML with HTMX",
+      "event": "frontend.OPO #1",
+      "date": "dec '23",
+      "description": "Are you tired of all those boring JS frameworks that load a HUGE node_modules in your machine, do a lot of useless and automagic stuff and seem like they want to create a PHP 2.0. You just want to build a simple form application using only the technologies that actually runs in the browser? Your problems are OVER. In this tech talk, I will show you all you can do with HTMX, a small, dependency-free, extensible, IE11-compatible library that extends your HTML (without transforming it into JS code). So you will be able to build modern user interfaces with the simplicity and power of hypertext.",
+      "slides": "https://speakerdeck.com/luisrondow/how-to-boost-your-programming-skills-in-html-with-htmx"
+    }
+  ]
+}

@@ -1,13 +1,15 @@
 ---
 import Header from "../components/Header.astro";
 import Footer from "../components/Footer.astro";
+import SEO from "../components/SEO.astro";
+import Schema from "../components/Schema.astro";
+import type { SEOProps } from "../types/seo";
 
-interface Props {
-  title: string;
-  routeName?: "work" | "projects" | "articles";
+interface Props extends SEOProps {
+  routeName?: "home" | "blog" | "bookmarks" | "projects" | "talks";
 }
 
-const { title, routeName } = Astro.props;
+const { routeName, ...seoProps } = Astro.props;
 ---
 
 <!doctype html>
@@ -15,66 +17,115 @@ const { title, routeName } = Astro.props;
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width" />
+    <meta
+      name="theme-color"
+      content="#ffffff"
+      media="(prefers-color-scheme: light)"
+    />
+    <meta
+      name="theme-color"
+      content="#0a0a0a"
+      media="(prefers-color-scheme: dark)"
+    />
+    <script is:inline>
+      const theme = localStorage.getItem("theme") || "light";
+      document.documentElement.classList.toggle("dark", theme === "dark");
+    </script>
     <link rel="icon" type="image/x-icon" href="/favicon.ico" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Saira+Extra+Condensed:wght@700;800;900&display=swap"
+      href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600;1,700&display=swap"
       rel="stylesheet"
     />
     <link
-      href="https://fonts.googleapis.com/css2?family=Roboto+Condensed:ital,wght@0,100..900;1,100..900&display=swap"
-      rel="stylesheet"
+      rel="preload"
+      href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600;1,700&display=swap"
+      as="style"
     />
     <meta name="generator" content={Astro.generator} />
-    <title>{title}</title>
+    <SEO {...seoProps} />
+    <Schema type="Person" />
+    <title>{seoProps.title}</title>
   </head>
-  <body class="dark:bg-black dark:text-white">
-    <div class="w-full max-w-[1440px]">
+  <body>
+    <!-- Vertical lines spanning full viewport height (hidden on mobile) -->
+    <div
+      class="pointer-events-none fixed inset-y-0 left-1/2 z-10 hidden w-full max-w-[1000px] -translate-x-1/2 lg:block"
+    >
+      <div class="bg-border absolute inset-y-0 left-0 w-px"></div>
+      <div class="bg-border absolute inset-y-0 right-0 w-px"></div>
+    </div>
+
+    <!-- Top line -->
+    <div class="w-full">
+      <div class="bg-border h-px w-screen"></div>
+    </div>
+    <div class="mx-auto w-full max-w-[1000px]">
       <Header route={routeName} />
+    </div>
+    <div class="bg-border h-px w-screen"></div>
+    <div class="mx-auto w-full max-w-[1000px]">
       <slot />
+    </div>
+    <div class="bg-border h-px w-screen"></div>
+    <div class="mx-auto w-full max-w-[1000px]">
       <Footer />
     </div>
+    <div class="bg-border h-px w-screen"></div>
   </body>
-  <script is:inline>
-    const theme = (() => {
-      if (
-        typeof localStorage !== "undefined" &&
-        localStorage.getItem("theme")
-      ) {
-        return localStorage.getItem("theme");
-      }
-      if (window.matchMedia("(prefers-color-scheme: dark)").matches) {
-        return "dark";
-      }
-      return "light";
-    })();
-
-    if (theme === "light") {
-      document.documentElement.classList.remove("dark");
-    } else {
-      document.documentElement.classList.add("dark");
-    }
-    window.localStorage.setItem("theme", theme);
-  </script>
 </html>
 
 <style is:global lang="postcss">
+  :root {
+    --color-background: #ffffff;
+    --color-header-bg: #f5f5f5;
+    --color-control-bg: #e5e5e5;
+    --color-accent: #000000;
+    --color-link: #000000;
+    --color-section-header: #000000;
+    --color-date: #666666;
+    --color-text: #000000;
+    --color-muted: #666666;
+    --color-muted-dark: #777777;
+    --color-muted-darker: #888888;
+    --color-muted-darkest: #999999;
+    --color-reading-link: #333333;
+    --color-border: #d4d4d4;
+    color-scheme: light;
+  }
+
+  :root.dark {
+    --color-background: #0a0a0a;
+    --color-header-bg: #141414;
+    --color-control-bg: #1f1f1f;
+    --color-accent: #ffffff;
+    --color-link: #ffffff;
+    --color-section-header: #ffffff;
+    --color-date: #999999;
+    --color-text: #ffffff;
+    --color-muted: #999999;
+    --color-muted-dark: #888888;
+    --color-muted-darker: #777777;
+    --color-muted-darkest: #666666;
+    --color-reading-link: #cccccc;
+    --color-border: #333333;
+    color-scheme: dark;
+  }
+
   body {
-    @apply bg-pale;
+    @apply bg-background;
     @apply font-normal;
     @apply text-base;
-    @apply text-black;
+    @apply text-text;
     @apply p-0;
     @apply m-0;
+    @apply py-4 sm:py-6 md:py-8;
     @apply min-h-screen;
     @apply w-full;
-    @apply flex;
-    @apply flex-col;
-    @apply items-center;
-    @apply justify-center;
+    @apply overflow-x-hidden;
 
-    font-family: "Roboto Condensed", sans-serif;
+    font-family: "JetBrains Mono", monospace;
   }
 
   h1,
@@ -83,24 +134,22 @@ const { title, routeName } = Astro.props;
   h4,
   h5,
   h6 {
-    @apply text-primary;
-    @apply font-black;
+    @apply font-semibold;
     @apply m-0;
     @apply leading-none;
 
-    font-family: "Saira Extra Condensed", sans-serif;
-    font-weight: 900;
-    margin: 0;
+    font-family: "JetBrains Mono", monospace;
   }
 
-  .dark {
-    h1,
-    h2,
-    h3,
-    h4,
-    h5,
-    h6 {
-      @apply text-pale;
-    }
+  a {
+    @apply transition-opacity;
+  }
+
+  a:focus-visible {
+    @apply outline-none ring-2 ring-link ring-offset-2 ring-offset-background rounded-sm;
+  }
+
+  button:focus-visible {
+    @apply outline-none ring-2 ring-link ring-offset-2 ring-offset-background rounded-sm;
   }
 </style>

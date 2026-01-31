@@ -1,0 +1,47 @@
+---
+import type { SEOProps } from "../types/seo";
+import { siteConfig } from "../config/site";
+
+interface Props extends SEOProps {}
+
+const {
+  title = siteConfig.name,
+  description = siteConfig.description,
+  canonical,
+  noindex = false,
+  openGraph = {},
+  twitter = {},
+} = Astro.props;
+
+const canonicalURL = canonical
+  ? new URL(canonical, siteConfig.url).href
+  : new URL(Astro.url.pathname, siteConfig.url).href;
+
+const ogImage = openGraph.image || `${siteConfig.url}/og-image.svg`;
+const twitterImage = twitter.image || ogImage;
+---
+
+<!-- Primary Meta Tags -->
+<meta name="title" content={title} />
+<meta name="description" content={description} />
+<meta name="author" content={siteConfig.author} />
+{noindex && <meta name="robots" content="noindex, nofollow" />}
+<link rel="canonical" href={canonicalURL} />
+
+<!-- Open Graph / Facebook -->
+<meta property="og:type" content={openGraph.type || "website"} />
+<meta property="og:url" content={canonicalURL} />
+<meta property="og:title" content={openGraph.title || title} />
+<meta property="og:description" content={openGraph.description || description} />
+<meta property="og:image" content={ogImage} />
+<meta property="og:site_name" content={siteConfig.name} />
+<meta property="og:locale" content={siteConfig.locale} />
+
+<!-- Twitter -->
+<meta name="twitter:card" content={twitter.card || "summary_large_image"} />
+<meta name="twitter:url" content={canonicalURL} />
+<meta name="twitter:title" content={twitter.title || title} />
+<meta name="twitter:description" content={twitter.description || description} />
+<meta name="twitter:image" content={twitterImage} />
+<meta name="twitter:site" content={siteConfig.twitter.site} />
+<meta name="twitter:creator" content={siteConfig.twitter.creator} />

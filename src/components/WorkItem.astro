@@ -1,0 +1,20 @@
+---
+interface Props {
+  name: string;
+  href: string;
+  role: string;
+  dates: string;
+  description: string;
+}
+
+const { name, href, role, dates, description } = Astro.props;
+---
+
+<div class="flex flex-col gap-1.5 sm:gap-1">
+  <div class="flex flex-wrap items-baseline gap-1.5 sm:gap-2">
+    <a class="text-link underline hover:opacity-80" href={href}>{name}</a>
+    <span class="text-xs text-muted-dark sm:text-[13px]">{role}</span>
+    <span class="text-xs text-date sm:text-[13px]">{dates}</span>
+  </div>
+  <p class="text-sm text-text">{description}</p>
+</div>

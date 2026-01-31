@@ -1,0 +1,12 @@
+---
+import Layout from "../layouts/Layout.astro";
+import SectionHeader from "../components/SectionHeader.astro";
+import { pageSEO } from "../config/site";
+---
+
+<Layout {...pageSEO.bookmarks} routeName="bookmarks">
+  <main class="px-4 pb-10 pt-8 sm:pb-14 sm:pt-12 md:px-6">
+    <SectionHeader text="bookmarks" />
+    <p class="mt-4 text-text sm:mt-6">coming soon...</p>
+  </main>
+</Layout>

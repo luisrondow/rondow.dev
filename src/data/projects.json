@@ -1,0 +1,11 @@
+{
+  "projects": [
+    {
+      "name": "fswp",
+      "href": "https://github.com/luisrondow/fswp",
+      "shortDescription": "a fast, keyboard-centric terminal application for decluttering directories using a swipe-style interface.",
+      "description": "a terminal application for organizing directories using a swipe-style interface. presents files one at a time with rich previews including syntax-highlighted code, terminal-rendered images, and pdf text extraction. features safe deletion via system trash, undo functionality, file type and size filtering, multiple sorting options, and direct editor integration. async preview loading keeps the interface responsive.",
+      "tech": ["rust", "ratatui", "crossterm", "tokio", "syntect", "clap"]
+    }
+  ]
+}
